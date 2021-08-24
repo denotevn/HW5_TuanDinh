@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body style="width: 600px; margin: auto;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul style="color: red;">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/login" method="post">
+        <div class="imgcontainer">
+            <img src="/static/image/anh9.jpg" alt="Avatar" class="avatar">
+        </div>
+        <div class="container">
+
+            <label for="user"><b>User</b></label>
+            <input type="text" name="username" placeholder="Enter username" required>
+
+            <br>
+            <label for="password"><b>Password<b></label>
+            <input type="password" name="password" placeholder="Enter password" required>
+
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <span><i>Don't have an account yet? </i><a href="/register">Register</a></span>
+</body>
+</html>

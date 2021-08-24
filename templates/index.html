@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/Styles.css">
+    <style>
+    #flex_container {
+        background-color:powderblue;
+        margin-left:auto;
+        margin-right:auto;
+        width: 900px;
+        display: flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body style="width: 900px; margin: auto;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul style="color: red;">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <h1>{{ text }}</h1>
+    <form action="/logout" method="post">
+        
+        <input type="submit" value="Log Out">
+    </form>
+    <br>
+    <br>
+    <div id = "flex_container">
+        <div class = "imgcontainer">
+            <img id="img-1" src = "/static/image/anh2.jpg" alt="Img01" ></div>
+        <div class = "imgcontainer">
+            <img id="img-2" src = "/static/image/anh3.jpg" alt="Img02" ></div>
+        <div class = "imgcontainer">
+            <img id="img-3" src = "/static/image/anh4.jpg" alt="Img03" ></div>
+        <div class = "imgcontainer">
+            <img id="img-4" src = "/static/image/anh5.jpg" alt="Img04" ></div>
+        <div class = "imgcontainer">
+            <img id="img-5" src = "/static/image/anh6.jpg" alt="Img05" ></div>
+        <div class = "imgcontainer">
+            <img id="img-6" src = "/static/image/anh7.jpg" alt="Img06" ></div>
+        <div class = "imgcontainer">
+            <img id="img-7" src = "/static/image/anh8.jpg" alt="Img01" ></div>
+        <div class = "imgcontainer">
+            <img id="img-8" src = "/static/image/anh9.jpg" alt="Img01" ></div>
+        <div class = "imgcontainer">
+            <img id="img-1" src = "/static/image/anhmeo1.jpg" alt="Img01" ></div>
+        <div class = "imgcontainer">
+            <img id="img-1" src = "/static/image/anhbia.jpg" alt="Img01" ></div>
+    </div>
+    <div id="modal-plain" class="modal">
+        <span class="close" id="close-button">&times;</span>
+        <img src="" id="modal-img" class="modal-content" >
+    </div>
+    <br>
+    <br>
+    <footer>
+        <p style="text-align:center"> @No copyright</p>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

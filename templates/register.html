@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/register.css">
+</head>
+<body style="width: 600px; margin: auto;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul style="color: red;">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/register" method="post">
+        <div class="container">
+            <label for="user"><b>User</b></label>
+            <input type="text" name="username" placeholder="enter username" required>
+            <br>
+            <label for="password"><b>Password</b></label>
+            <input type="password" name="password" placeholder="enter your password" required>
+            <br>
+            <label for="password_confirm"><b>Confirm password<b></label>
+            <input type="password" name="password_confirm" placeholder = "Confirm password" required>
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    <span><i>Already have an account?</i> <a href="/login">Log In</a></span>
+</body>
+</html>
