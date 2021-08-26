@@ -9,17 +9,17 @@ input[type=text], input[type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(13, 226, 226);
     box-sizing: border-box;
   }
   
   /* Set a style for all buttons */
 button {
-    background-color: #04AA6D;
-    color: white;
+    background-color: #14d38d;
+    color: rgb(126, 212, 208);
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
+    border: 2px solid purple;
     cursor: pointer;
     width: 100%;
   }
@@ -39,7 +39,7 @@ button:hover {
   /* Center the avatar image inside this container */
 .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
+    margin: 20px 0 12px 0;
   }
   
   /* Avatar image */
