@@ -7,13 +7,14 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = app_config.SECRET_KEY
 
-#users = {name[:-5]:User.from_file(name) for name in os.listdir(app_config.USER_DB_DIR)}
-users = {name[:-5]:User.from_file(name) for name in os.listdir(app_config.USER_DB_DIR)}
+def check_cookie(request):
+    return User.get_user(request.cookies.get('username')).authorize(request.cookies.get('token'))
+
 def login_required(func):
     @wraps(func)
     def login_func(*arg, **kwargs):
         try:
-            if (User.get_user(request.cookies.get('username')).authorize(request.cookies.get('token'))):
+            if check_cookie(request):
                 return func(*arg, **kwargs)
         except:
             pass
@@ -26,7 +27,7 @@ def no_login(func):
     @wraps(func)
     def no_login_func(*arg, **kwargs):
         try:
-            if (User.get_user(request.cookies.get('username')).authorize(request.cookies.get('token'))):
+            if check_cookie(request):
                 flash("You're already in!")
                 return redirect('/')
         except:
@@ -99,6 +100,30 @@ def register():
         flash("User already exists!!!")
     
     return render_template('register.html')
+
+@app.route('/changepwd',methods=["POST", "GET"])
+@login_required
+def change_password():
+    if request.method == "GET":
+        return render_template('changepwd.html')
+    username = request.cookies.get('username')
+    old_pwd = request.form.get('old_pwd')
+    new_pwd = request.form.get('new_pwd')
+    new_pwd_confirm = request.form.get('new_pwd_confirm')
+    
+    current_user = User.get_user(username)
+    if current_user.authenticate(old_pwd):
+        if new_pwd == new_pwd_confirm:
+            current_user.update_password(new_pwd)
+            flash("Password is successfully <3 <3 <3")
+            return redirect('/')
+        else:
+            flash("New passwords not match !") 
+    else:
+        flash("Old password is not correct <3")
+    return render_template('changepwd.html')   
+
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)

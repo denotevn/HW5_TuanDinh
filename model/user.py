@@ -42,7 +42,11 @@ class User:
 
     def authenticate(self, password):
         return check_password_hash(self.password, password)
-    
+#update password hash   
+    def update_password(self, password):
+        self.password = generate_password_hash(password)
+        self.dump()
+
     def init_session(self):
         self.token = gen_session_token()
         self.dump()
@@ -57,7 +61,7 @@ class User:
     
     def __str__(self):
         return f'{self.username};{self.password};{self.token}'
-    
+#method to save data in to file    
     def dump(self):
         with open(app_config.USER_DB_DIR + '/' + self.username + '.data', 'w') as f:
             f.write(str(self))

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="width: 750px; margin: auto;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul style="color: red;">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/changepwd" method="post">
+            <label for="old_pwd"><b>Old Password:</b></label>
+            <input type="password" name="old_pwd" placeholder="Enter your previous password" required>
+            <br>
+            <label for="new_pwd"><b>New Password:</b></label>
+            <input type="password" name="new_pwd" placeholder="Enter your new password" required>
+            <br>
+            <label for="new_pwd_confirm"><b>Password Confirm:</b></label>
+            <input type="password" name="new_pwd_confirm" placeholder = "Enter your new password confirmation" required>
+            <input type="submit" value="Update password" name>
+    </form>
+    <br>
+    <span><i>Go back </i> <a href="/">home page</a></span>
+</body>
+</html>
